@@ -11,3 +11,23 @@
 соответствующее сообщение. При этом работа скрипта не должна завершаться.
 """
 
+
+class IsDigitWarning(Exception):
+    def __init__(self, msg):
+        self.msg = msg
+
+
+list_dig = []
+s = input("Введите число для добавления в список: ")
+
+while s != "stop":
+    try:
+        if not s.isdigit():
+            raise IsDigitWarning("Введено не число!")
+    except IsDigitWarning as err:
+        print(err)
+    else:
+        list_dig.append(int(s))
+    finally:
+        s = input("Введите следующее число для добавления в список: ")
+print("Полученный список: " + ' '.join(str(i) for i in list_dig))
